@@ -80,27 +80,28 @@ export const formatPrice = (
   currency: string,
   billingCycle: number
 ) => {
-  if (price === -1) return "免费";
+  if (price === -1) return "Free";
   if (price === 0) return "";
   if (!currency || !billingCycle) return "N/A";
 
-  let cycleStr = `${billingCycle}天`;
+  // 终端风：计费周期统一英文缩写（mo/quarter/half-year/yr…）
+  let cycleStr = `${billingCycle}d`;
   if (billingCycle < 0) {
     return `${currency}${price.toFixed(2)}`;
   } else if (billingCycle === 30 || billingCycle === 31) {
-    cycleStr = "月";
+    cycleStr = "mo";
   } else if (billingCycle >= 89 && billingCycle <= 92) {
-    cycleStr = "季";
+    cycleStr = "quarter";
   } else if (billingCycle >= 180 && billingCycle <= 183) {
-    cycleStr = "半年";
+    cycleStr = "half-yr";
   } else if (billingCycle >= 364 && billingCycle <= 366) {
-    cycleStr = "年";
+    cycleStr = "yr";
   } else if (billingCycle >= 730 && billingCycle <= 732) {
-    cycleStr = "两年";
+    cycleStr = "2yr";
   } else if (billingCycle >= 1095 && billingCycle <= 1097) {
-    cycleStr = "三年";
+    cycleStr = "3yr";
   } else if (billingCycle >= 1825 && billingCycle <= 1827) {
-    cycleStr = "五年";
+    cycleStr = "5yr";
   }
 
   return `${currency}${price.toFixed(2)}/${cycleStr}`;

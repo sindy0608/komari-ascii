@@ -60,6 +60,7 @@ const AppRoutes = ({
   footerHeight: number;
 }) => {
   const location = useLocation();
+  const isHome = location.pathname === "/";
   const {
     loading,
     groups,
@@ -115,14 +116,17 @@ const AppRoutes = ({
 
   return (
     <>
-      <Header
-        ref={headerRef}
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-        setIsSettingsOpen={setIsSettingsOpen}
-        isSettingsOpen={isSettingsOpen}
-        {...statsBarProps}
-      />
+      {/* 终端风：主页由 AsciiDashboard 全屏覆盖，隐藏旧导航栏，避免刷新时闪过 Komari 标题栏 */}
+      {!isHome && (
+        <Header
+          ref={headerRef}
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          setIsSettingsOpen={setIsSettingsOpen}
+          isSettingsOpen={isSettingsOpen}
+          {...statsBarProps}
+        />
+      )}
       <div className="flex-1 min-h-0">
         <Suspense fallback={<Loading />}>
           <Routes>
@@ -270,7 +274,7 @@ export const AppContent = () => {
       <Toaster />
       <DynamicContent>
         <div
-          className={`paper-texture ambient-glow grid h-dvh transition-all duration-300 ${
+          className={`grid h-dvh transition-all duration-300 ${
             isSettingsOpen && !isMobile
               ? "grid-cols-[1fr_auto]"
               : "grid-cols-[1fr]"

@@ -2,6 +2,34 @@ import { formatPrice } from "@/utils";
 import type { NodeData } from "@/types/node";
 import type { RpcNodeStatus } from "@/types/rpc";
 
+const EN_MONTHS = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
+
+// 标签里可能含中文日期（如「2026年8月续费」），终端风统一转成英文（Aug 2026）
+export const englishizeTagDates = (tag: string): string =>
+  tag
+    .replace(
+      /(\d{4})\s*年\s*(\d{1,2})\s*月\s*(\d{1,2})\s*日/g,
+      (_m, y: string, mo: string, d: string) =>
+        `${EN_MONTHS[Number(mo) - 1]} ${Number(d)}, ${y}`
+    )
+    .replace(
+      /(\d{4})\s*年\s*(\d{1,2})\s*月/g,
+      (_m, y: string, mo: string) => `${EN_MONTHS[Number(mo) - 1]} ${y}`
+    );
+
 export interface NezhaFormattedInfo {
   uuid: string;
   name: string;
@@ -66,7 +94,7 @@ export function formatNezhaInfo(
   const load_15 = stats?.load15 ?? 0;
 
   const last_active_time_string = stats?.time
-    ? new Date(stats.time).toLocaleString()
+    ? new Date(stats.time).toLocaleString("en-GB", { hour12: false })
     : "N/A";
 
   const expiryMs = node.expired_at ? new Date(node.expired_at).getTime() : NaN;
@@ -81,7 +109,7 @@ export function formatNezhaInfo(
     typeof node.tags === "string"
       ? node.tags
           .split(";")
-          .map((tag) => tag.trim())
+          .map((tag) => englishizeTagDates(tag.trim()))
           .filter(Boolean)
       : [];
 

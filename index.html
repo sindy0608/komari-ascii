@@ -7,7 +7,7 @@
     <meta
       name="keywords"
       content="server monitor, Komari Monitor, server uptime monitoring, real-time server status, server performance dashboard, monitoring tool" />
-    <meta name="theme-color" content="#aa99ec" />
+    <meta name="theme-color" content="#050605" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -17,25 +17,38 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Komari Monitor" />
     <meta name="twitter:description" content="A simple server monitor tool." />
-    <title>Komari Monitor</title>
+    <title>Komari ASCII</title>
     <meta name="description" content="A simple server monitor tool." />
   </head>
-  <body>
-    <div
-      id="background-container"
-      class="fixed top-0 left-0 w-full h-full z-[-1]">
-      <div
-        id="image-background"
-        class="absolute top-0 left-0 w-full h-full bg-cover bg-top bg-no-repeat z-10"></div>
-      <video
-        id="video-background"
-        class="absolute top-0 left-0 w-full h-full object-cover object-top z-20"
-        autoplay
-        loop
-        muted
-        playsinline></video>
+  <body style="background: #050605">
+    <!-- ASCII 主题：首屏即黑底绿字，避免旧主题（奶油底/壁纸）在 JS 加载前闪现 -->
+    <style>
+      .ascii-boot {
+        position: fixed;
+        inset: 0;
+        z-index: 60;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #050605;
+        color: #22c55e;
+        font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas,
+          "Liberation Mono", monospace;
+        font-size: 13px;
+        letter-spacing: 0.08em;
+      }
+      .ascii-boot span {
+        animation: ascii-blink 1.1s steps(2, start) infinite;
+      }
+      @keyframes ascii-blink {
+        to {
+          visibility: hidden;
+        }
+      }
+    </style>
+    <div id="root" class="relative z-30">
+      <div class="ascii-boot"><span>&gt; booting komari-ascii_</span></div>
     </div>
-    <div id="root" class="relative z-30"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

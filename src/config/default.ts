@@ -51,10 +51,11 @@ export interface ConfigOptions {
 export const DEFAULT_CONFIG: ConfigOptions = {
   isShowConfigEditButtonInLogined: true,
   mainWidth: 85,
-  backgroundImage: "/assets/wallpaper1.jpg",
+  // ASCII 终端风：壁纸/视频背景已移除，默认置空保持纯黑终端底
+  backgroundImage: "",
   backgroundImageMobile: "",
   enableVideoBackground: false,
-  videoBackgroundUrl: "/assets/LanternRivers_1080p15fps2Mbps3s.mp4",
+  videoBackgroundUrl: "",
   videoBackgroundUrlMobile: "",
   backgroundAlignment: "cover,top",
   blurValue: 10,
@@ -62,7 +63,7 @@ export const DEFAULT_CONFIG: ConfigOptions = {
   enableTransparentTags: true,
   tagDefaultColorList:
     "ruby,gray,gold,bronze,brown,yellow,amber,orange,tomato,red",
-  selectThemeColor: "violet",
+  selectThemeColor: "green",
   enableLocalStorage: true,
   selectedDefaultView: "grid",
   selectedDefaultAppearance: "system",

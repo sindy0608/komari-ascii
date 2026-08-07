@@ -73,7 +73,9 @@ export function ServerPingPanel({ uuid }: ServerPingPanelProps) {
               </span>
               {latestTime && (
                 <span className="ml-1 text-[var(--ascii-muted)]">
-                  @ {new Date(latestTime).toLocaleTimeString()}
+                  @ {new Date(latestTime).toLocaleTimeString("en-GB", {
+                    hour12: false,
+                  })}
                 </span>
               )}
             </div>

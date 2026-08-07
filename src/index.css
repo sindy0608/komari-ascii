@@ -1,6 +1,4 @@
-/* Google fonts must be the first @import to satisfy PostCSS */
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap");
-
+/* ASCII 终端风：不再加载田园风 webfont，全部回退系统等宽字体，减少首屏阻塞请求 */
 @import "tailwindcss/theme";
 @import "./palette-rgb.css";
 @import "tailwindcss/preflight";
@@ -46,64 +44,66 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-  /* Serif 设计系统字体族 */
-  --font-serif: "Playfair Display", Georgia, "Songti SC", serif;
-  --font-sans: "Source Sans 3", system-ui, -apple-system, sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  /* Serif 设计系统字体族 —— ASCII 终端风：统一回退等宽字体 */
+  --font-serif: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-sans: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 :root {
-  --radius: 0.75rem; /* 12px — softer, more organic */
-  --background: #f8f6f1; /* Warm cream */
-  --foreground: #2d2a26; /* Warm rich black */
-  --card: #ffffff; /* Pure white for lift */
-  --card-foreground: #2d2a26;
-  --popover: #ffffff;
-  --popover-foreground: #2d2a26;
-  --primary: #6b5a45; /* Earthy brown */
-  --primary-foreground: #ffffff;
-  --secondary: #f1ede6; /* Muted cream surface */
-  --secondary-foreground: #7d776f; /* Warm gray */
-  --muted: #f1ede6;
-  --muted-foreground: #7d776f;
-  --accent: #a87c4f; /* Muted gold / honey */
-  --accent-foreground: #ffffff;
-  --destructive: #b95c54; /* Brick red */
-  --destructive-transparent: #b95c541a;
-  --border: #e5e0d6; /* Warm gray rule */
-  --input: #e5e0d6;
-  --ring: #a87c4f;
-  --chart-1: #7a8f6a; /* moss */
-  --chart-2: #8aaab7; /* sky */
-  --chart-3: #a87c4f; /* honey */
-  --chart-4: #a89bb7; /* lavender */
-  --chart-5: #b95c54; /* brick */
-  --sidebar: #f8f6f1;
-  --sidebar-foreground: #2d2a26;
-  --sidebar-primary: #6b5a45;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #f1ede6;
-  --sidebar-accent-foreground: #2d2a26;
-  --sidebar-border: #e5e0d6;
-  --sidebar-ring: #a87c4f;
+  --radius: 0.25rem; /* 终端风：小圆角 */
+  /* ASCII 终端调色板：所有表面 token 重映射为黑底绿字，
+     使 Header / Card / 下拉菜单等沿用旧组件的界面也呈终端观感 */
+  --background: #050605;
+  --foreground: #e6f5e6;
+  --card: #0a120a;
+  --card-foreground: #e6f5e6;
+  --popover: #0a120a;
+  --popover-foreground: #e6f5e6;
+  --primary: #22c55e;
+  --primary-foreground: #050605;
+  --secondary: #0a120a;
+  --secondary-foreground: #3d7a46;
+  --muted: #0a120a;
+  --muted-foreground: #3d7a46;
+  --accent: #14522d;
+  --accent-foreground: #e6f5e6;
+  --destructive: #ef4444;
+  --destructive-transparent: #ef44441a;
+  --border: #16401a;
+  --input: #16401a;
+  --ring: #22c55e;
+  --chart-1: #4ade80;
+  --chart-2: #22d3ee;
+  --chart-3: #a3e635;
+  --chart-4: #34d399;
+  --chart-5: #ef4444;
+  --sidebar: #050605;
+  --sidebar-foreground: #e6f5e6;
+  --sidebar-primary: #22c55e;
+  --sidebar-primary-foreground: #050605;
+  --sidebar-accent: #0a120a;
+  --sidebar-accent-foreground: #e6f5e6;
+  --sidebar-border: #16401a;
+  --sidebar-ring: #22c55e;
 
   --main-width: 85vw;
   --setting-width: 24rem;
   --purcarte-blur: 0px; /* 取消磨砂 */
   --body-background-url: url("");
 
-  /* Serif 辅助 token */
-  --serif-accent: #a87c4f;
-  --serif-accent-soft: #c49a70;
-  --serif-rule: #e5e0d6;
-  --serif-card-bg: rgba(255, 255, 255, 0.72); /* 半透明白：透出壁纸但不失可读 */
-  --serif-card-bg-hover: rgba(255, 255, 255, 0.82);
-  --serif-blur: 10px; /* 克制的磨砂 */
+  /* Serif 辅助 token —— 重映射为终端绿 */
+  --serif-accent: #22c55e;
+  --serif-accent-soft: #4ade80;
+  --serif-rule: #16401a;
+  --serif-card-bg: #0a120a; /* 终端风：不透明黑绿卡片 */
+  --serif-card-bg-hover: #10200f;
+  --serif-blur: 0px;
 
-  /* 占用率语义色（亮色）：鼠尾草绿 / 琥珀 / 砖红 */
-  --usage-low: #7a8f6a;
-  --usage-mid: #a87c4f;
-  --usage-high: #b95c54;
+  /* 占用率语义色（亮色）：终端绿 / 琥珀 / 红 */
+  --usage-low: #4ade80;
+  --usage-mid: #fbbf24;
+  --usage-high: #ef4444;
 
   /* ASCII terminal palette used by the Nezha-style dashboard */
   --ascii-background: #050605;
@@ -118,50 +118,51 @@
 }
 
 .dark {
-  --background: #1e1c18; /* 深炭灰，保留温度 */
-  --foreground: #f2efe8;
-  --card: #26231f;
-  --card-foreground: #f2efe8;
-  --popover: #26231f;
-  --popover-foreground: #f2efe8;
-  --primary: #d4c5a9; /* 暖米色 primary */
-  --primary-foreground: #1e1c18;
-  --secondary: #2f2b27;
-  --secondary-foreground: #a8a299;
-  --muted: #2f2b27;
-  --muted-foreground: #a8a299;
-  --accent: #e0b87d; /* 暗色金更亮 */
-  --accent-foreground: #1e1c18;
-  --destructive: #e57373;
-  --destructive-transparent: #e5737326;
-  --border: #3f3a34;
-  --input: #3f3a34;
-  --ring: #e0b87d;
-  --chart-1: #9bb88a;
-  --chart-2: #a8c9d4;
-  --chart-3: #e0b87d;
-  --chart-4: #b9aec7;
-  --chart-5: #e57373;
-  --sidebar: #1e1c18;
-  --sidebar-foreground: #f2efe8;
-  --sidebar-primary: #f2efe8;
-  --sidebar-primary-foreground: #1e1c18;
-  --sidebar-accent: #2f2b27;
-  --sidebar-accent-foreground: #f2efe8;
-  --sidebar-border: #3f3a34;
-  --sidebar-ring: #e0b87d;
+  /* ASCII 终端调色板（暗色）：与亮色一致的终端观感 */
+  --background: #050605;
+  --foreground: #e6f5e6;
+  --card: #0a120a;
+  --card-foreground: #e6f5e6;
+  --popover: #0a120a;
+  --popover-foreground: #e6f5e6;
+  --primary: #22c55e;
+  --primary-foreground: #050605;
+  --secondary: #0a120a;
+  --secondary-foreground: #3d7a46;
+  --muted: #0a120a;
+  --muted-foreground: #3d7a46;
+  --accent: #14522d;
+  --accent-foreground: #e6f5e6;
+  --destructive: #ef4444;
+  --destructive-transparent: #ef444426;
+  --border: #16401a;
+  --input: #16401a;
+  --ring: #22c55e;
+  --chart-1: #4ade80;
+  --chart-2: #22d3ee;
+  --chart-3: #a3e635;
+  --chart-4: #34d399;
+  --chart-5: #ef4444;
+  --sidebar: #050605;
+  --sidebar-foreground: #e6f5e6;
+  --sidebar-primary: #22c55e;
+  --sidebar-primary-foreground: #050605;
+  --sidebar-accent: #0a120a;
+  --sidebar-accent-foreground: #e6f5e6;
+  --sidebar-border: #16401a;
+  --sidebar-ring: #22c55e;
 
-  --serif-accent: #e0b87d;
-  --serif-accent-soft: #e8c578;
-  --serif-rule: #3f3a34;
-  --serif-card-bg: rgba(38, 35, 31, 0.75); /* 半透明深炭：透出壁纸 */
-  --serif-card-bg-hover: rgba(45, 41, 37, 0.85);
-  --serif-blur: 10px;
+  --serif-accent: #22c55e;
+  --serif-accent-soft: #4ade80;
+  --serif-rule: #16401a;
+  --serif-card-bg: #0a120a; /* 终端风：不透明黑绿卡片 */
+  --serif-card-bg-hover: #10200f;
+  --serif-blur: 0px;
 
-  /* 占用率语义色（暗色）：各提亮一档保证对比 */
-  --usage-low: #9bb88a;
-  --usage-mid: #e0b87d;
-  --usage-high: #e57373;
+  /* 占用率语义色（暗色）：终端绿 / 琥珀 / 红 */
+  --usage-low: #4ade80;
+  --usage-mid: #fbbf24;
+  --usage-high: #ef4444;
 
   /* ASCII terminal palette used by the Nezha-style dashboard */
   --ascii-background: #050605;
@@ -181,8 +182,9 @@
     outline-color: var(--ring);
   }
   body {
-    background-color: var(--background);
-    font-family: var(--font-sans);
+    /* ASCII 终端风：纯黑底 + 等宽字体，避免首屏闪过旧主题的奶油色/衬线排版 */
+    background-color: var(--ascii-background);
+    font-family: var(--font-mono);
     color: var(--foreground);
     letter-spacing: 0.01em;
   }

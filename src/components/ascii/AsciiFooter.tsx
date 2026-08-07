@@ -8,12 +8,14 @@ interface AsciiFooterProps {
 
 function CurrentTime() {
   const [timeString, setTimeString] = useState(() =>
-    new Date().toLocaleTimeString()
+    new Date().toLocaleTimeString("en-GB", { hour12: false })
   );
 
   useEffect(() => {
     const update = () => {
-      setTimeString(new Date().toLocaleTimeString());
+      setTimeString(
+        new Date().toLocaleTimeString("en-GB", { hour12: false })
+      );
     };
     const id = setInterval(update, 1000);
     return () => clearInterval(id);

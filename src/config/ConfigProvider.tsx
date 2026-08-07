@@ -21,8 +21,6 @@ export function ConfigProvider({ children }: ConfigProviderProps) {
   const [siteStatus, setSiteStatus] = useState<SiteStatus>("public");
   const [previewConfig, setPreviewConfig] =
     useState<Partial<ConfigOptions> | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [isLoaded, setIsLoaded] = useState(false);
 
   const loadConfig = async () => {
     try {
@@ -70,9 +68,6 @@ export function ConfigProvider({ children }: ConfigProviderProps) {
       console.error("Failed to initialize site:", error);
       setConfig(DEFAULT_CONFIG);
       setSiteStatus("private-unauthenticated");
-    } finally {
-      setLoading(false);
-      setTimeout(() => setIsLoaded(true), 300);
     }
   };
 
@@ -95,7 +90,6 @@ export function ConfigProvider({ children }: ConfigProviderProps) {
   };
 
   const reloadConfig = async () => {
-    setLoading(true);
     await loadConfig();
   };
 
@@ -107,10 +101,10 @@ export function ConfigProvider({ children }: ConfigProviderProps) {
     [config, previewConfig]
   );
 
-  if (!isLoaded || !config) {
-    return (
-      <Loading text="加载配置中..." className={!loading ? "fade-out" : ""} />
-    );
+  if (!config) {
+    // 仅在 React 挂载前（index.html 的黑底启动屏）与首请求返回前短暂出现；
+    // 配置一到立即渲染主页，不再用 isLoaded 门控制造空白页。
+    return <Loading />;
   }
 
   return (
