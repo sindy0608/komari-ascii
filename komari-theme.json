@@ -2,7 +2,7 @@
     "name": "Komari Theme ASCII",
     "short": "ASCII",
     "description": "A terminal-style ASCII dashboard theme for Komari",
-    "version": "1.0.0",
+    "version": "1.0",
     "author": "faust",
     "url": "https://github.com/facl/komari-ascii",
     "preview": "preview.png",
