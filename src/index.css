@@ -1,0 +1,358 @@
+/* Google fonts must be the first @import to satisfy PostCSS */
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap");
+
+@import "tailwindcss/theme";
+@import "./palette-rgb.css";
+@import "tailwindcss/preflight";
+@import "tailwindcss/utilities";
+
+/* Serif 设计系统字体 —— Playfair Display(标题/服务器名)、Source Sans 3(正文)、IBM Plex Mono(标签/数字) */
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  /* Serif 设计系统字体族 */
+  --font-serif: "Playfair Display", Georgia, "Songti SC", serif;
+  --font-sans: "Source Sans 3", system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+:root {
+  --radius: 0.75rem; /* 12px — softer, more organic */
+  --background: #f8f6f1; /* Warm cream */
+  --foreground: #2d2a26; /* Warm rich black */
+  --card: #ffffff; /* Pure white for lift */
+  --card-foreground: #2d2a26;
+  --popover: #ffffff;
+  --popover-foreground: #2d2a26;
+  --primary: #6b5a45; /* Earthy brown */
+  --primary-foreground: #ffffff;
+  --secondary: #f1ede6; /* Muted cream surface */
+  --secondary-foreground: #7d776f; /* Warm gray */
+  --muted: #f1ede6;
+  --muted-foreground: #7d776f;
+  --accent: #a87c4f; /* Muted gold / honey */
+  --accent-foreground: #ffffff;
+  --destructive: #b95c54; /* Brick red */
+  --destructive-transparent: #b95c541a;
+  --border: #e5e0d6; /* Warm gray rule */
+  --input: #e5e0d6;
+  --ring: #a87c4f;
+  --chart-1: #7a8f6a; /* moss */
+  --chart-2: #8aaab7; /* sky */
+  --chart-3: #a87c4f; /* honey */
+  --chart-4: #a89bb7; /* lavender */
+  --chart-5: #b95c54; /* brick */
+  --sidebar: #f8f6f1;
+  --sidebar-foreground: #2d2a26;
+  --sidebar-primary: #6b5a45;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f1ede6;
+  --sidebar-accent-foreground: #2d2a26;
+  --sidebar-border: #e5e0d6;
+  --sidebar-ring: #a87c4f;
+
+  --main-width: 85vw;
+  --setting-width: 24rem;
+  --purcarte-blur: 0px; /* 取消磨砂 */
+  --body-background-url: url("");
+
+  /* Serif 辅助 token */
+  --serif-accent: #a87c4f;
+  --serif-accent-soft: #c49a70;
+  --serif-rule: #e5e0d6;
+  --serif-card-bg: rgba(255, 255, 255, 0.72); /* 半透明白：透出壁纸但不失可读 */
+  --serif-card-bg-hover: rgba(255, 255, 255, 0.82);
+  --serif-blur: 10px; /* 克制的磨砂 */
+
+  /* 占用率语义色（亮色）：鼠尾草绿 / 琥珀 / 砖红 */
+  --usage-low: #7a8f6a;
+  --usage-mid: #a87c4f;
+  --usage-high: #b95c54;
+
+  /* ASCII terminal palette used by the Nezha-style dashboard */
+  --ascii-background: #050605;
+  --ascii-foreground: #e6f5e6;
+  --ascii-card: #0a120a;
+  --ascii-border: #16401a;
+  --ascii-primary: #22c55e;
+  --ascii-primary-muted: #14522d;
+  --ascii-muted: #3d7a46;
+  --ascii-success: #4ade80;
+  --ascii-destructive: #ef4444;
+}
+
+.dark {
+  --background: #1e1c18; /* 深炭灰，保留温度 */
+  --foreground: #f2efe8;
+  --card: #26231f;
+  --card-foreground: #f2efe8;
+  --popover: #26231f;
+  --popover-foreground: #f2efe8;
+  --primary: #d4c5a9; /* 暖米色 primary */
+  --primary-foreground: #1e1c18;
+  --secondary: #2f2b27;
+  --secondary-foreground: #a8a299;
+  --muted: #2f2b27;
+  --muted-foreground: #a8a299;
+  --accent: #e0b87d; /* 暗色金更亮 */
+  --accent-foreground: #1e1c18;
+  --destructive: #e57373;
+  --destructive-transparent: #e5737326;
+  --border: #3f3a34;
+  --input: #3f3a34;
+  --ring: #e0b87d;
+  --chart-1: #9bb88a;
+  --chart-2: #a8c9d4;
+  --chart-3: #e0b87d;
+  --chart-4: #b9aec7;
+  --chart-5: #e57373;
+  --sidebar: #1e1c18;
+  --sidebar-foreground: #f2efe8;
+  --sidebar-primary: #f2efe8;
+  --sidebar-primary-foreground: #1e1c18;
+  --sidebar-accent: #2f2b27;
+  --sidebar-accent-foreground: #f2efe8;
+  --sidebar-border: #3f3a34;
+  --sidebar-ring: #e0b87d;
+
+  --serif-accent: #e0b87d;
+  --serif-accent-soft: #e8c578;
+  --serif-rule: #3f3a34;
+  --serif-card-bg: rgba(38, 35, 31, 0.75); /* 半透明深炭：透出壁纸 */
+  --serif-card-bg-hover: rgba(45, 41, 37, 0.85);
+  --serif-blur: 10px;
+
+  /* 占用率语义色（暗色）：各提亮一档保证对比 */
+  --usage-low: #9bb88a;
+  --usage-mid: #e0b87d;
+  --usage-high: #e57373;
+
+  /* ASCII terminal palette used by the Nezha-style dashboard */
+  --ascii-background: #050605;
+  --ascii-foreground: #e6f5e6;
+  --ascii-card: #0a120a;
+  --ascii-border: #16401a;
+  --ascii-primary: #22c55e;
+  --ascii-primary-muted: #14522d;
+  --ascii-muted: #3d7a46;
+  --ascii-success: #4ade80;
+  --ascii-destructive: #ef4444;
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+    outline-color: var(--ring);
+  }
+  body {
+    background-color: var(--background);
+    font-family: var(--font-sans);
+    color: var(--foreground);
+    letter-spacing: 0.01em;
+  }
+  button {
+    cursor: pointer;
+  }
+}
+
+@layer utilities {
+  .radix-themes {
+    --purcarte-card-color: var(--serif-card-bg);
+    --theme-text-muted-color: var(--secondary-foreground);
+    --theme-line-muted-color: var(--secondary-foreground);
+  }
+  .radix-themes.dark {
+    --purcarte-card-color: var(--serif-card-bg);
+  }
+
+  /* 原“磨砂玻璃”语义类 —— 半透明白卡 + 克制 backdrop-blur，透出壁纸但不失清晰。 */
+  .purcarte-blur {
+    background-color: var(--serif-card-bg) !important;
+    backdrop-filter: blur(var(--serif-blur));
+    -webkit-backdrop-filter: blur(var(--serif-blur));
+  }
+
+  .rt-Badge-tag-transparent {
+    --tag-transparent-bg: color-mix(in srgb, var(--accent) 12%, transparent);
+    --tag-transparent-color: color-mix(in srgb, var(--accent) 75%, var(--foreground));
+    @apply bg-(--tag-transparent-bg) text-(--tag-transparent-color);
+  }
+
+  /* 按钮：去掉 inset-shadow 玻璃感，改用 prompt 的描边/填充按钮语义 */
+  .theme-button {
+    background-color: var(--accent) !important;
+    color: var(--accent-foreground) !important;
+  }
+  .theme-button:hover {
+    background-color: var(--serif-accent-soft) !important;
+  }
+  .theme-button-ghost {
+    background: transparent !important;
+    color: var(--secondary-foreground) !important;
+  }
+  .theme-button-ghost:hover {
+    background: var(--muted) !important;
+    color: var(--foreground) !important;
+  }
+
+  .theme-text-shadow {
+    text-shadow: none;
+  }
+
+  /* 卡片样式：半透明白 + 暖灰细描边 + 柔和弥散阴影 + 磨砂（prompt 的 shadow-sm） */
+  .theme-card-style {
+    background-color: var(--serif-card-bg);
+    backdrop-filter: blur(var(--serif-blur));
+    -webkit-backdrop-filter: blur(var(--serif-blur));
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 20px -4px color-mix(in srgb, var(--foreground) 6%, transparent);
+    border-radius: var(--radius);
+  }
+
+  .theme-text-muted {
+    color: var(--secondary-foreground);
+  }
+
+  /* ===== Serif 设计系统语义类 ===== */
+  .serif-display {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .serif-body {
+    font-family: var(--font-sans);
+    letter-spacing: 0.01em;
+  }
+  .small-caps {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .tabular {
+    font-variant-numeric: tabular-nums;
+    font-family: var(--font-mono);
+  }
+  .text-serif-accent {
+    color: var(--serif-accent);
+  }
+
+  /* 田园诗歌风：柔和暖金氛围光晕，用于容器装饰 */
+  .pastoral-glow::before {
+    content: "";
+    position: absolute;
+    inset: -20%;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.4;
+    background: radial-gradient(
+      ellipse at center,
+      color-mix(in srgb, var(--serif-accent) 8%, transparent) 0%,
+      transparent 70%
+    );
+  }
+
+  /* 田园诗歌风：有机软阴影 */
+  .pastoral-shadow {
+    box-shadow: 0 4px 20px -4px color-mix(in srgb, var(--foreground) 8%, transparent);
+  }
+
+  /* 纸质纹理叠加：极淡噪点，印刷质感（prompt signature element #10）。
+     0.04 太隐晦不可感知；提至 0.08 让质感在象牙底上可见但不脏。 */
+  .paper-texture::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.08;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* 环境光晕：极淡金色径向晕，营造温暖的氛围深度（prompt signature element #11）。
+     固定定位、2% 透明度、pointer-events:none，纯装饰不影响交互。 */
+  .ambient-glow::after {
+    content: "";
+    position: fixed;
+    top: -20vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80vw;
+    height: 60vh;
+    z-index: 0;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse at center,
+      color-mix(in srgb, var(--serif-accent) 2%, transparent) 0%,
+      transparent 70%
+    );
+  }
+}
+
+/* 离线节点斜纹（克制版，红色低饱和） */
+.striped-bg-red-translucent-diagonal {
+  background-image: linear-gradient(
+    45deg,
+    var(--destructive-transparent) 25%,
+    transparent 25%,
+    transparent 50%,
+    var(--destructive-transparent) 50%,
+    var(--destructive-transparent) 75%,
+    transparent 75%,
+    transparent 100%
+  );
+  background-size: 60px 60px;
+}
+
+/* 动画 */
+.fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+.fade-out {
+  animation: fadeOut 0.5s ease-in forwards;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes fadeOut {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.98); }
+}
