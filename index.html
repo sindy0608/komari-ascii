@@ -18,6 +18,17 @@
     <meta name="twitter:title" content="Komari Monitor" />
     <meta name="twitter:description" content="A simple server monitor tool." />
     <title>Komari ASCII</title>
+    <!-- 终端字体 IBM Plex Mono：异步加载不阻塞首屏，加载完成前用系统等宽字体兜底 -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" />
+    </noscript>
     <meta name="description" content="A simple server monitor tool." />
   </head>
   <body style="background: #050605">
