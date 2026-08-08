@@ -122,11 +122,17 @@ export function ServerTable({
                     </div>
                   </td>
                   <td className="p-1 sm:p-2">
-                    <div className="flex flex-col leading-tight">
-                      <span>
-                        ↑ {formatSpeed(server.up)} ↓ {formatSpeed(server.down)}
+                    <div className="flex flex-col leading-tight whitespace-nowrap">
+                      {/* 固定宽度：上/下网速各占定宽列，避免数值随单位跳变时整列拉伸 */}
+                      <span className="flex">
+                        <span className="inline-block w-[7.5rem] tabular-nums">
+                          ↑ {formatSpeed(server.up)}
+                        </span>
+                        <span className="inline-block tabular-nums">
+                          ↓ {formatSpeed(server.down)}
+                        </span>
                       </span>
-                      <span className="text-[var(--ascii-muted)]">
+                      <span className="text-[var(--ascii-muted)] tabular-nums">
                         {formatBytes(server.net_out_transfer + server.net_in_transfer)}
                       </span>
                     </div>

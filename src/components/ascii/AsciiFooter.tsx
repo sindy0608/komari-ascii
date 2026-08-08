@@ -34,6 +34,13 @@ export function AsciiFooter({ upSpeed, downSpeed }: AsciiFooterProps) {
       <a href="/admin" className="underline hover:text-[var(--ascii-primary)]">
         Dashboard
       </a>
+      <a
+        href="https://github.com/facl/komari-ascii"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="underline hover:text-[var(--ascii-primary)]">
+        GitHub
+      </a>
     </div>
   );
 }
