@@ -21,7 +21,11 @@ export function ServerTable({
   onToggleExpandAll,
 }: ServerTableProps) {
   return (
-    <div className="border border-[var(--ascii-border)] rounded overflow-x-auto">
+    // scrollbar-gutter:stable 始终预留滚动条空间，展开行出现/消失横向滚动条时不再抖动整页
+    <div
+      className="border border-[var(--ascii-border)] rounded overflow-x-auto"
+      style={{ scrollbarGutter: "stable" }}
+    >
       <div className="p-2 border-b border-[var(--ascii-border)] flex justify-end">
         <button
           onClick={onToggleExpandAll}
@@ -40,10 +44,23 @@ export function ServerTable({
           )}
         </button>
       </div>
-      <table className="w-full text-left text-[10px] sm:text-xs whitespace-nowrap">
+      {/* table-fixed：列宽完全由 colgroup 决定，内容跳变不再撑动列宽，避免展开行时抖动 */}
+      <table className="w-full text-left text-[10px] sm:text-xs whitespace-nowrap table-fixed">
+        <colgroup>
+          <col className="w-[160px] min-w-[160px]" />
+          <col className="w-[110px] min-w-[110px]" />
+          <col className="w-[110px] min-w-[110px]" />
+          <col className="w-[110px] min-w-[110px]" />
+          <col className="w-[230px] min-w-[230px]" />
+          <col className="w-[90px] min-w-[90px]" />
+          <col className="w-[70px] min-w-[70px]" />
+          <col className="w-[80px] min-w-[80px]" />
+          <col className="w-[90px] min-w-[90px]" />
+          <col className="w-[150px] min-w-[150px]" />
+        </colgroup>
         <thead>
           <tr className="bg-[var(--ascii-primary)]/10">
-            <th className="p-1 sm:p-2 min-w-[140px]">Server</th>
+            <th className="p-1 sm:p-2">Server</th>
             <th className="p-1 sm:p-2">CPU</th>
             <th className="p-1 sm:p-2">Memory</th>
             <th className="p-1 sm:p-2">Storage</th>
@@ -52,7 +69,7 @@ export function ServerTable({
             <th className="p-1 sm:p-2">Load</th>
             <th className="p-1 sm:p-2">Status</th>
             <th className="p-1 sm:p-2">Expiry</th>
-            <th className="p-1 sm:p-2 min-w-[140px]">Tags</th>
+            <th className="p-1 sm:p-2">Tags</th>
           </tr>
         </thead>
         <tbody>
@@ -68,7 +85,7 @@ export function ServerTable({
                     isExpanded && "bg-[var(--ascii-primary)]/10"
                   )}
                 >
-                  <td className="p-1 sm:p-2 min-w-[140px]">
+                  <td className="p-1 sm:p-2">
                     <div className="flex items-center gap-1">
                       {isExpanded ? (
                         <ChevronUp className="w-3 h-3 flex-shrink-0" />
@@ -122,20 +139,19 @@ export function ServerTable({
                     </div>
                   </td>
                   <td className="p-1 sm:p-2">
-                    <div className="flex flex-col leading-tight whitespace-nowrap">
-                      {/* 固定宽度：上/下网速各占定宽列，数值右对齐，
-                          避免数值随单位跳变（KB/s↔MB/s、2.9↔2.75）时整列拉伸 */}
-                      <span className="flex">
-                        <span className="inline-block w-[7.5rem] text-right tabular-nums">
-                          ↑ {formatSpeed(server.up)}
-                        </span>
-                        <span className="inline-block w-[7.5rem] text-right tabular-nums">
-                          ↓ {formatSpeed(server.down)}
-                        </span>
+                    {/* 两段按内容宽度紧挨排列（auto auto），整体左对齐到 ↑ 栏，
+                        避免下行被右半格边缘撑开离上行太远；
+                        tabular-nums 保证数字等宽，数值跳变不抖动 */}
+                    <div className="grid grid-cols-[auto_auto] gap-x-3 leading-tight whitespace-nowrap tabular-nums">
+                      <span className="text-left">
+                        ↑ {formatSpeed(server.up)}
                       </span>
-                      <span className="text-[var(--ascii-muted)] tabular-nums">
-                        {formatBytes(server.net_out_transfer + server.net_in_transfer)}
+                      <span className="text-left">
+                        ↓ {formatSpeed(server.down)}
                       </span>
+                    </div>
+                    <div className="text-[var(--ascii-muted)] tabular-nums">
+                      total {formatBytes(server.net_out_transfer + server.net_in_transfer)}
                     </div>
                   </td>
                   <td className="p-1 sm:p-2">
@@ -156,7 +172,7 @@ export function ServerTable({
                   <td className="p-1 sm:p-2">
                     {formatExpiry(server)}
                   </td>
-                  <td className="p-1 sm:p-2 min-w-[140px]">
+                  <td className="p-1 sm:p-2">
                     <div className="flex flex-wrap gap-1">
                       {server.price && (
                         <span className="text-[var(--ascii-muted)]">{server.price}</span>
