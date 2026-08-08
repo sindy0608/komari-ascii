@@ -28,8 +28,12 @@ export function AsciiFooter({ upSpeed, downSpeed }: AsciiFooterProps) {
   return (
     <div className="mt-2 sm:mt-4 text-[10px] sm:text-xs text-[var(--ascii-muted)] flex flex-col sm:flex-row sm:justify-between">
       <CurrentTime />
-      <div>
-        Network Speed: ↑ {formatBytes(upSpeed, true)} ↓ {formatBytes(downSpeed, true)}
+      {/* 上/下网速各占定宽 + tabular-nums，数值随单位跳变时这段宽度恒定，
+          不再撑动右侧 Dashboard/GitHub 链接的位置 */}
+      <div className="whitespace-nowrap tabular-nums">
+        Network Speed:{" "}
+        <span className="inline-block w-[8rem]">↑ {formatBytes(upSpeed, true)}</span>
+        <span className="inline-block w-[8rem]">↓ {formatBytes(downSpeed, true)}</span>
       </div>
       <a href="/admin" className="underline hover:text-[var(--ascii-primary)]">
         Dashboard

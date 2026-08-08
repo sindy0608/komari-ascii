@@ -139,14 +139,14 @@ export function ServerTable({
                     </div>
                   </td>
                   <td className="p-1 sm:p-2">
-                    {/* 两段按内容宽度紧挨排列（auto auto），整体左对齐到 ↑ 栏，
-                        避免下行被右半格边缘撑开离上行太远；
+                    {/* 两段各占固定宽度 + 左对齐：↑/↓ 箭头各自钉在固定位置，
+                        互不影响（auto 列会让 ↓ 随上行宽度漂移）；
                         tabular-nums 保证数字等宽，数值跳变不抖动 */}
-                    <div className="grid grid-cols-[auto_auto] gap-x-3 leading-tight whitespace-nowrap tabular-nums">
-                      <span className="text-left">
+                    <div className="flex leading-tight whitespace-nowrap tabular-nums">
+                      <span className="inline-block w-[6rem] text-left">
                         ↑ {formatSpeed(server.up)}
                       </span>
-                      <span className="text-left">
+                      <span className="inline-block w-[6rem] text-left">
                         ↓ {formatSpeed(server.down)}
                       </span>
                     </div>
