@@ -123,12 +123,13 @@ export function ServerTable({
                   </td>
                   <td className="p-1 sm:p-2">
                     <div className="flex flex-col leading-tight whitespace-nowrap">
-                      {/* 固定宽度：上/下网速各占定宽列，避免数值随单位跳变时整列拉伸 */}
+                      {/* 固定宽度：上/下网速各占定宽列，数值右对齐，
+                          避免数值随单位跳变（KB/s↔MB/s、2.9↔2.75）时整列拉伸 */}
                       <span className="flex">
-                        <span className="inline-block w-[7.5rem] tabular-nums">
+                        <span className="inline-block w-[7.5rem] text-right tabular-nums">
                           ↑ {formatSpeed(server.up)}
                         </span>
-                        <span className="inline-block tabular-nums">
+                        <span className="inline-block w-[7.5rem] text-right tabular-nums">
                           ↓ {formatSpeed(server.down)}
                         </span>
                       </span>
