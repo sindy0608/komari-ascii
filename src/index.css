@@ -104,6 +104,8 @@
   --usage-low: #16803f;
   --usage-mid: #b86b00;
   --usage-high: #c62828;
+  --speed-kb: #c62828;
+  --speed-other: #16803f;
 
   /* ASCII dashboard 日间色板 */
   --ascii-background: #f4f7f2;
@@ -164,6 +166,8 @@
   --usage-low: #88b09a;
   --usage-mid: #d3aa66;
   --usage-high: #f07178;
+  --speed-kb: #f07178;
+  --speed-other: #88b09a;
 
   /* ASCII dashboard 夜间深灰色板 */
   --ascii-background: #16181b;
