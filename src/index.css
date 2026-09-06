@@ -102,9 +102,9 @@
 
   /* 占用率语义色（日间）：深绿 / 琥珀 / 红，保证白底可读性。 */
   --usage-low: #16803f;
-  --usage-mid: #b86b00;
-  --usage-high: #c62828;
-  --speed-kb: #c62828;
+  --usage-mid: #a96b00;
+  --usage-high: #dc2626;
+  --speed-kb: #dc2626;
   --speed-other: #16803f;
 
   /* ASCII dashboard 日间色板 */
@@ -116,7 +116,7 @@
   --ascii-primary-muted: #cfe5d3;
   --ascii-muted: #52715a;
   --ascii-success: #16803f;
-  --ascii-destructive: #c62828;
+  --ascii-destructive: #dc2626;
 }
 
 .dark {
@@ -187,7 +187,7 @@
     outline-color: var(--ring);
   }
   body {
-    /* ASCII 终端风：纯黑底 + 等宽字体，避免首屏闪过旧主题的奶油色/衬线排版 */
+    /* ASCII 终端风：纯色底 + 等宽字体，避免首屏闪过旧主题的排版 */
     background-color: var(--ascii-background);
     font-family: var(--font-mono);
     color: var(--foreground);
@@ -195,6 +195,63 @@
   }
   button {
     cursor: pointer;
+  }
+}
+
+/* 节点状态灯：实心点、薄外圈，以及在线状态的低调呼吸光晕。 */
+.status-dot {
+  position: relative;
+  display: inline-block;
+  width: 0.6rem;
+  height: 0.6rem;
+  flex: 0 0 0.6rem;
+  border-radius: 9999px;
+  isolation: isolate;
+}
+
+.status-dot::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border: 1px solid currentColor;
+  border-radius: inherit;
+  opacity: 0.38;
+  pointer-events: none;
+}
+
+.status-dot-online {
+  color: var(--ascii-success);
+  background-color: currentColor;
+  box-shadow: 0 0 5px color-mix(in srgb, currentColor 42%, transparent);
+}
+
+.status-dot-online::after {
+  animation: status-dot-pulse 1.9s ease-out infinite;
+}
+
+.status-dot-offline {
+  color: var(--ascii-destructive);
+  background-color: currentColor;
+  box-shadow: 0 0 4px color-mix(in srgb, currentColor 30%, transparent);
+}
+
+@keyframes status-dot-pulse {
+  0% {
+    transform: scale(0.92);
+    opacity: 0.46;
+  }
+  72%,
+  100% {
+    transform: scale(1.75);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .status-dot-online::after {
+    animation: none;
+    transform: scale(1.25);
+    opacity: 0.28;
   }
 }
 

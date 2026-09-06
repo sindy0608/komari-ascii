@@ -95,10 +95,8 @@ export function ServerTable({
                       <span
                         aria-label={server.online ? "Online" : "Offline"}
                         title={server.online ? "Online" : "Offline"}
-                        className={`h-2 w-2 shrink-0 rounded-full ${
-                          server.online
-                            ? "bg-[var(--ascii-success)]"
-                            : "bg-[var(--ascii-destructive)]"
+                        className={`status-dot ${
+                          server.online ? "status-dot-online" : "status-dot-offline"
                         }`}
                       />
                       <ServerFlag country_code={server.country_code} />
