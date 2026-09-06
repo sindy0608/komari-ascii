@@ -6,15 +6,22 @@ import { useNodeData } from "@/contexts/NodeDataContext";
 import { useLiveData } from "@/contexts/LiveDataContext";
 import { formatNezhaInfo } from "@/utils/nezha-ascii/formatInfo";
 import type { NodeData } from "@/types/node";
+import { AsciiToolbar } from "@/components/ascii/AsciiToolbar";
 
 interface AsciiDashboardProps {
   searchTerm: string;
   filteredNodes?: (NodeData & { stats?: any })[];
+  groups: string[];
+  selectedGroup: string;
+  onSelectGroup: (group: string) => void;
 }
 
 export default function AsciiDashboard({
   searchTerm,
   filteredNodes: propFilteredNodes,
+  groups,
+  selectedGroup,
+  onSelectGroup,
 }: AsciiDashboardProps) {
   const { nodes, loading } = useNodeData();
   const { liveData } = useLiveData();
@@ -89,6 +96,11 @@ export default function AsciiDashboard({
 
   return (
     <div className="fixed inset-0 z-50 overflow-auto bg-[var(--ascii-background)] text-[var(--ascii-primary)] p-1 sm:p-2 font-mono text-xs">
+      <AsciiToolbar
+        groups={groups}
+        selectedGroup={selectedGroup}
+        onSelectGroup={onSelectGroup}
+      />
       <HeaderStats
         totalServers={totalServers}
         onlineServers={onlineServers}
