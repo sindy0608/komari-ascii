@@ -52,73 +52,74 @@
 
 :root {
   --radius: 0.25rem; /* 终端风：小圆角 */
-  /* ASCII 终端调色板：所有表面 token 重映射为黑底绿字，
-     使 Header / Card / 下拉菜单等沿用旧组件的界面也呈终端观感 */
-  --background: #050605;
-  --foreground: #e6f5e6;
-  --card: #0a120a;
-  --card-foreground: #e6f5e6;
-  --popover: #0a120a;
-  --popover-foreground: #e6f5e6;
-  --primary: #22c55e;
-  --primary-foreground: #050605;
-  --secondary: #0a120a;
-  --secondary-foreground: #3d7a46;
-  --muted: #0a120a;
-  --muted-foreground: #3d7a46;
-  --accent: #14522d;
-  --accent-foreground: #e6f5e6;
-  --destructive: #ef4444;
-  --destructive-transparent: #ef44441a;
-  --border: #16401a;
-  --input: #16401a;
-  --ring: #22c55e;
-  --chart-1: #4ade80;
-  --chart-2: #22d3ee;
-  --chart-3: #a3e635;
-  --chart-4: #34d399;
-  --chart-5: #ef4444;
-  --sidebar: #050605;
-  --sidebar-foreground: #e6f5e6;
-  --sidebar-primary: #22c55e;
-  --sidebar-primary-foreground: #050605;
-  --sidebar-accent: #0a120a;
-  --sidebar-accent-foreground: #e6f5e6;
-  --sidebar-border: #16401a;
-  --sidebar-ring: #22c55e;
+  color-scheme: light dark;
+
+  /* 日间终端色板：米白纸张底、深绿文字，保留 ASCII 命令行气质。 */
+  --background: #f4f7f2;
+  --foreground: #17231a;
+  --card: #ffffff;
+  --card-foreground: #17231a;
+  --popover: #ffffff;
+  --popover-foreground: #17231a;
+  --primary: #146c38;
+  --primary-foreground: #ffffff;
+  --secondary: #e5eee5;
+  --secondary-foreground: #45634d;
+  --muted: #edf3ec;
+  --muted-foreground: #52715a;
+  --accent: #cfe5d3;
+  --accent-foreground: #173d24;
+  --destructive: #c62828;
+  --destructive-transparent: #c628281a;
+  --border: #a9c5ae;
+  --input: #a9c5ae;
+  --ring: #146c38;
+  --chart-1: #16803f;
+  --chart-2: #087d8c;
+  --chart-3: #668b1c;
+  --chart-4: #218366;
+  --chart-5: #c62828;
+  --sidebar: #f4f7f2;
+  --sidebar-foreground: #17231a;
+  --sidebar-primary: #146c38;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e5eee5;
+  --sidebar-accent-foreground: #173d24;
+  --sidebar-border: #a9c5ae;
+  --sidebar-ring: #146c38;
 
   --main-width: 85vw;
   --setting-width: 24rem;
   --purcarte-blur: 0px; /* 取消磨砂 */
   --body-background-url: url("");
 
-  /* Serif 辅助 token —— 重映射为终端绿 */
-  --serif-accent: #22c55e;
-  --serif-accent-soft: #4ade80;
-  --serif-rule: #16401a;
-  --serif-card-bg: #0a120a; /* 终端风：不透明黑绿卡片 */
-  --serif-card-bg-hover: #10200f;
+  --serif-accent: #146c38;
+  --serif-accent-soft: #1d8b49;
+  --serif-rule: #a9c5ae;
+  --serif-card-bg: #ffffff;
+  --serif-card-bg-hover: #edf5ed;
   --serif-blur: 0px;
 
-  /* 占用率语义色（亮色）：终端绿 / 琥珀 / 红 */
-  --usage-low: #4ade80;
-  --usage-mid: #fbbf24;
-  --usage-high: #ef4444;
+  /* 占用率语义色（日间）：深绿 / 琥珀 / 红，保证白底可读性。 */
+  --usage-low: #16803f;
+  --usage-mid: #b86b00;
+  --usage-high: #c62828;
 
-  /* ASCII terminal palette used by the Nezha-style dashboard */
-  --ascii-background: #050605;
-  --ascii-foreground: #e6f5e6;
-  --ascii-card: #0a120a;
-  --ascii-border: #16401a;
-  --ascii-primary: #22c55e;
-  --ascii-primary-muted: #14522d;
-  --ascii-muted: #3d7a46;
-  --ascii-success: #4ade80;
-  --ascii-destructive: #ef4444;
+  /* ASCII dashboard 日间色板 */
+  --ascii-background: #f4f7f2;
+  --ascii-foreground: #17231a;
+  --ascii-card: #ffffff;
+  --ascii-border: #a9c5ae;
+  --ascii-primary: #146c38;
+  --ascii-primary-muted: #cfe5d3;
+  --ascii-muted: #52715a;
+  --ascii-success: #16803f;
+  --ascii-destructive: #c62828;
 }
 
 .dark {
-  /* ASCII 终端调色板（暗色）：与亮色一致的终端观感 */
+  color-scheme: dark;
+  /* ASCII 终端调色板（暗色）：保留原有黑底绿字的夜间观感 */
   --background: #050605;
   --foreground: #e6f5e6;
   --card: #0a120a;
