@@ -1,3 +1,6 @@
+import { useTheme } from "@/hooks/useTheme";
+import type { AppearanceType } from "@/config/default";
+
 interface AsciiToolbarProps {
   groups: string[];
   selectedGroup: string;
@@ -9,6 +12,13 @@ export function AsciiToolbar({
   selectedGroup,
   onSelectGroup,
 }: AsciiToolbarProps) {
+  const { rawAppearance, setAppearance } = useTheme();
+  const themeModes: { value: AppearanceType; label: string }[] = [
+    { value: "system", label: "自动" },
+    { value: "light", label: "日间" },
+    { value: "dark", label: "夜间" },
+  ];
+
   return (
     <nav
       aria-label="Dashboard controls"
@@ -36,6 +46,31 @@ export function AsciiToolbar({
               }`}
             >
               {group}
+            </button>
+          );
+        })}
+      </div>
+
+      <div
+        aria-label="主题模式"
+        className="flex shrink-0 items-center border border-[var(--ascii-border)]"
+      >
+        {themeModes.map(({ value, label }) => {
+          const isSelected = rawAppearance === value;
+          return (
+            <button
+              key={value}
+              type="button"
+              aria-pressed={isSelected}
+              title={`${label}模式`}
+              onClick={() => setAppearance(value)}
+              className={`border-r border-[var(--ascii-border)] px-2 py-1 transition-colors last:border-r-0 ${
+                isSelected
+                  ? "bg-[var(--ascii-primary)] text-[var(--ascii-background)]"
+                  : "text-[var(--ascii-muted)] hover:bg-[var(--ascii-card)] hover:text-[var(--ascii-primary)]"
+              }`}
+            >
+              {label}
             </button>
           );
         })}

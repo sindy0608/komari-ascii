@@ -119,62 +119,62 @@
 
 .dark {
   color-scheme: dark;
-  /* ASCII 终端调色板（暗色）：保留原有黑底绿字的夜间观感 */
-  --background: #050605;
-  --foreground: #e6f5e6;
-  --card: #0a120a;
-  --card-foreground: #e6f5e6;
-  --popover: #0a120a;
-  --popover-foreground: #e6f5e6;
-  --primary: #22c55e;
-  --primary-foreground: #050605;
-  --secondary: #0a120a;
-  --secondary-foreground: #3d7a46;
-  --muted: #0a120a;
-  --muted-foreground: #3d7a46;
-  --accent: #14522d;
-  --accent-foreground: #e6f5e6;
-  --destructive: #ef4444;
-  --destructive-transparent: #ef444426;
-  --border: #16401a;
-  --input: #16401a;
-  --ring: #22c55e;
-  --chart-1: #4ade80;
-  --chart-2: #22d3ee;
-  --chart-3: #a3e635;
-  --chart-4: #34d399;
-  --chart-5: #ef4444;
-  --sidebar: #050605;
-  --sidebar-foreground: #e6f5e6;
-  --sidebar-primary: #22c55e;
-  --sidebar-primary-foreground: #050605;
-  --sidebar-accent: #0a120a;
-  --sidebar-accent-foreground: #e6f5e6;
-  --sidebar-border: #16401a;
-  --sidebar-ring: #22c55e;
+  /* 夜间终端色板：中性深灰为主，蓝灰高亮，减少大面积荧光绿。 */
+  --background: #16181b;
+  --foreground: #e4e7eb;
+  --card: #1d2024;
+  --card-foreground: #e4e7eb;
+  --popover: #22262b;
+  --popover-foreground: #e4e7eb;
+  --primary: #aeb8c4;
+  --primary-foreground: #16181b;
+  --secondary: #272b30;
+  --secondary-foreground: #aab2bc;
+  --muted: #25292e;
+  --muted-foreground: #a6aeb8;
+  --accent: #3a4654;
+  --accent-foreground: #f4f6f8;
+  --destructive: #f07178;
+  --destructive-transparent: #f0717826;
+  --border: #41474f;
+  --input: #4b525b;
+  --ring: #8fa3b8;
+  --chart-1: #91a4b7;
+  --chart-2: #74a7b5;
+  --chart-3: #a7ad82;
+  --chart-4: #83a89b;
+  --chart-5: #f07178;
+  --sidebar: #16181b;
+  --sidebar-foreground: #e4e7eb;
+  --sidebar-primary: #aeb8c4;
+  --sidebar-primary-foreground: #16181b;
+  --sidebar-accent: #272b30;
+  --sidebar-accent-foreground: #f4f6f8;
+  --sidebar-border: #41474f;
+  --sidebar-ring: #8fa3b8;
 
-  --serif-accent: #22c55e;
-  --serif-accent-soft: #4ade80;
-  --serif-rule: #16401a;
-  --serif-card-bg: #0a120a; /* 终端风：不透明黑绿卡片 */
-  --serif-card-bg-hover: #10200f;
+  --serif-accent: #aeb8c4;
+  --serif-accent-soft: #d4dae1;
+  --serif-rule: #41474f;
+  --serif-card-bg: #1d2024;
+  --serif-card-bg-hover: #272b30;
   --serif-blur: 0px;
 
-  /* 占用率语义色（暗色）：终端绿 / 琥珀 / 红 */
-  --usage-low: #4ade80;
-  --usage-mid: #fbbf24;
-  --usage-high: #ef4444;
+  /* 状态色只用于语义提示，不作为夜间主题主色。 */
+  --usage-low: #88b09a;
+  --usage-mid: #d3aa66;
+  --usage-high: #f07178;
 
-  /* ASCII terminal palette used by the Nezha-style dashboard */
-  --ascii-background: #050605;
-  --ascii-foreground: #e6f5e6;
-  --ascii-card: #0a120a;
-  --ascii-border: #16401a;
-  --ascii-primary: #22c55e;
-  --ascii-primary-muted: #14522d;
-  --ascii-muted: #3d7a46;
-  --ascii-success: #4ade80;
-  --ascii-destructive: #ef4444;
+  /* ASCII dashboard 夜间深灰色板 */
+  --ascii-background: #16181b;
+  --ascii-foreground: #e4e7eb;
+  --ascii-card: #1d2024;
+  --ascii-border: #41474f;
+  --ascii-primary: #c2cad3;
+  --ascii-primary-muted: #59636e;
+  --ascii-muted: #a6aeb8;
+  --ascii-success: #88b09a;
+  --ascii-destructive: #f07178;
 }
 
 @layer base {
