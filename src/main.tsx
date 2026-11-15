@@ -153,6 +153,9 @@ const AppRoutes = ({
                       <AsciiDashboard
                         searchTerm={searchTerm}
                         filteredNodes={filteredNodes}
+                        groups={groups}
+                        selectedGroup={selectedGroup}
+                        onSelectGroup={setSelectedGroup}
                       />
                     </main>
                     {selectedFooterStyle === "followContent" && (

@@ -1,5 +1,5 @@
 import { ChevronDown, ChevronUp } from "lucide-react";
-import { cn, formatBytes } from "@/utils";
+import { cn, formatBytes, getSpeedColor, getUsageColor } from "@/utils";
 import type { NezhaFormattedInfo } from "@/utils/nezha-ascii/formatInfo";
 import { AsciiProgress } from "./AsciiProgress";
 import { ServerFlag } from "./ServerFlag";
@@ -92,6 +92,13 @@ export function ServerTable({
                       ) : (
                         <ChevronDown className="w-3 h-3 flex-shrink-0" />
                       )}
+                      <span
+                        aria-label={server.online ? "Online" : "Offline"}
+                        title={server.online ? "Online" : "Offline"}
+                        className={`status-dot ${
+                          server.online ? "status-dot-online" : "status-dot-offline"
+                        }`}
+                      />
                       <ServerFlag country_code={server.country_code} />
                       <span className="truncate">{server.name}</span>
                     </div>
@@ -100,11 +107,8 @@ export function ServerTable({
                     <div className="flex items-center gap-1">
                       <AsciiProgress value={server.cpu} className="w-14" />
                       <span
-                        className={`w-[35px] text-right ${
-                          server.cpu > 80
-                            ? "text-[var(--ascii-destructive)]"
-                            : "text-[var(--ascii-primary)]"
-                        }`}
+                        className="w-[35px] text-right"
+                        style={{ color: getUsageColor(server.cpu) }}
                       >
                         {server.cpu.toFixed(1)}%
                       </span>
@@ -114,11 +118,8 @@ export function ServerTable({
                     <div className="flex items-center gap-1">
                       <AsciiProgress value={server.mem} className="w-14" />
                       <span
-                        className={`w-[35px] text-right ${
-                          server.mem > 80
-                            ? "text-[var(--ascii-destructive)]"
-                            : "text-[var(--ascii-primary)]"
-                        }`}
+                        className="w-[35px] text-right"
+                        style={{ color: getUsageColor(server.mem) }}
                       >
                         {server.mem.toFixed(1)}%
                       </span>
@@ -128,11 +129,8 @@ export function ServerTable({
                     <div className="flex items-center gap-1">
                       <AsciiProgress value={server.stg} className="w-14" />
                       <span
-                        className={`w-[35px] text-right ${
-                          server.stg > 80
-                            ? "text-[var(--ascii-destructive)]"
-                            : "text-[var(--ascii-primary)]"
-                        }`}
+                        className="w-[35px] text-right"
+                        style={{ color: getUsageColor(server.stg) }}
                       >
                         {server.stg.toFixed(1)}%
                       </span>
@@ -143,10 +141,16 @@ export function ServerTable({
                         互不影响（auto 列会让 ↓ 随上行宽度漂移）；
                         tabular-nums 保证数字等宽，数值跳变不抖动 */}
                     <div className="flex leading-tight whitespace-nowrap tabular-nums">
-                      <span className="inline-block w-[6rem] text-left">
+                      <span
+                        className="inline-block w-[6rem] text-left"
+                        style={{ color: getSpeedColor(server.up) }}
+                      >
                         ↑ {formatSpeed(server.up)}
                       </span>
-                      <span className="inline-block w-[6rem] text-left">
+                      <span
+                        className="inline-block w-[6rem] text-left"
+                        style={{ color: getSpeedColor(server.down) }}
+                      >
                         ↓ {formatSpeed(server.down)}
                       </span>
                     </div>

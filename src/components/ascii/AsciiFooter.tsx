@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { formatBytes } from "@/utils";
+import { formatBytes, getSpeedColor } from "@/utils";
 
 interface AsciiFooterProps {
   upSpeed: number;
@@ -32,8 +32,18 @@ export function AsciiFooter({ upSpeed, downSpeed }: AsciiFooterProps) {
           不再撑动右侧 Dashboard/GitHub 链接的位置 */}
       <div className="whitespace-nowrap tabular-nums">
         Network Speed:{" "}
-        <span className="inline-block w-[8rem]">↑ {formatBytes(upSpeed, true)}</span>
-        <span className="inline-block w-[8rem]">↓ {formatBytes(downSpeed, true)}</span>
+        <span
+          className="inline-block w-[8rem]"
+          style={{ color: getSpeedColor(upSpeed) }}
+        >
+          ↑ {formatBytes(upSpeed, true)}
+        </span>
+        <span
+          className="inline-block w-[8rem]"
+          style={{ color: getSpeedColor(downSpeed) }}
+        >
+          ↓ {formatBytes(downSpeed, true)}
+        </span>
       </div>
       <a href="/admin" className="underline hover:text-[var(--ascii-primary)]">
         Dashboard

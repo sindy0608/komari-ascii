@@ -144,14 +144,23 @@ export const formatYMD = (date: Date): string => {
 };
 
 /**
- * Serif 设计系统：占用率语义颜色。
- * 低 ≤50% 鼠尾草绿、中 51–85% 琥珀、高 >85% 砖红。
+ * 资源占用率语义颜色：低 <60% 绿、中 60–79% 黄、高 ≥80% 红。
  * 暗色模式各自提亮一档以保证对比度。返回 CSS 变量，亮/暗自适应。
  */
 export const getUsageColor = (percentage: number): string => {
-  if (percentage > 85) return "var(--usage-high)";
-  if (percentage > 50) return "var(--usage-mid)";
+  if (percentage >= 80) return "var(--usage-high)";
+  if (percentage >= 60) return "var(--usage-mid)";
   return "var(--usage-low)";
+};
+
+/**
+ * 实时网速颜色：格式化后落在 KB/s 档时标红，其余单位标绿。
+ */
+export const getSpeedColor = (bytesPerSecond: number): string => {
+  const absoluteSpeed = Math.abs(bytesPerSecond);
+  return absoluteSpeed >= 1024 && absoluteSpeed < 1024 ** 2
+    ? "var(--speed-kb)"
+    : "var(--speed-other)";
 };
 
 /**

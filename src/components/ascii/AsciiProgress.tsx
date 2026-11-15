@@ -1,4 +1,5 @@
 import { cn } from "@/utils";
+import { getUsageColor } from "@/utils";
 
 interface AsciiProgressProps {
   value?: number;
@@ -23,8 +24,9 @@ export function AsciiProgress({
           key={i}
           className={cn(
             "h-2 w-0.5 transition-colors duration-200",
-            isActive ? "bg-[var(--ascii-primary)]" : "bg-[var(--ascii-primary-muted)]"
+            !isActive && "bg-[var(--ascii-primary-muted)]"
           )}
+          style={isActive ? { backgroundColor: getUsageColor(value) } : undefined}
         />
       ))}
     </div>

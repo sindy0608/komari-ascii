@@ -55,7 +55,7 @@ export const useNodeListCommons = (searchTerm: string) => {
     let nodes = combinedNodes
       .filter(
         (node: NodeData & { stats?: any }) =>
-          selectedGroup === t("group.all") || node.region === selectedGroup
+          selectedGroup === t("group.all") || node.group?.trim() === selectedGroup
       )
       .filter((node: NodeData) =>
         node.name.toLowerCase().includes(searchTerm.toLowerCase())

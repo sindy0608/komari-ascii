@@ -95,7 +95,7 @@ function useNodesInternal() {
 
   const getGroups = useCallback(() => {
     return Array.from(
-      new Set(staticNodes.map((node) => node.region).filter(Boolean))
+      new Set(staticNodes.map((node) => node.group?.trim()).filter(Boolean))
     );
   }, [staticNodes]);
 
